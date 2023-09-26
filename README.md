@@ -44,6 +44,9 @@ If you prefer to use Docker for the frontend, here are the steps:
    
    Your frontend would be up and running on localhost:8000
 
+Here's a screenshot of what the basic frontend would look like:
+![Frontend](demo/ss1.PNG)
+
 ## Backend Setup
 
 To set up the backend of the project, follow these steps:
