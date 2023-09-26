@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8
+FROM python:3.8-slim-buster
 
 # Set the working directory in the container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install the application's dependencies
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 # Copy all the source code to the working directory
 COPY . .
