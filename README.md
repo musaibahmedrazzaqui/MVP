@@ -95,7 +95,7 @@ If you prefer to use Docker for the backend, here are the steps:
    ```bash
    docker ps
    ```
- Your frontend would be up and running on localhost:5001
+ Your backend would be up and running on localhost:5001
 ## Usage
 
 On the frontend, there are two buttons:
