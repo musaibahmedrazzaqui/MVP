@@ -92,7 +92,7 @@ def save_uploaded_image_to_temp_file(image_file):
   image_file.save(temp_image_path)
   return temp_image_path
 
-@app.route('/upload/receipts', methods=['POST'])
+@app.route('/upload/invoices', methods=['POST'])
 def upload_receipts():
     try:
         # Check if the 'file' field is present in the POST request
@@ -134,7 +134,7 @@ def upload_receipts():
         print("Error:", str(e))
         return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/upload/invoices', methods=['POST'])
+@app.route('/upload/receipts', methods=['POST'])
 def upload_invoices():
     try:
         # Check if the 'file' field is present in the POST request
