@@ -15,12 +15,12 @@ To set up the frontend of the project, follow these steps:
 
 2. Install the necessary dependencies using npm:
    ```bash
-   npm install --force
+   npm install
    ```
 
 3. Start the frontend application:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ### Using Docker for Frontend
