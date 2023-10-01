@@ -49,6 +49,12 @@ Here's a screenshot of what the basic frontend would look like:
 
 ## Backend Setup
 
+## Prerequisites
+
+- **Windows**: Install `gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe` from [this link](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2022-01-04/gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe). Check envrionment variables for ../GTK3-Runtime Win64/bin should be in your path. Restart the system if an error occurs.
+- **Linux**: Follow the installation steps for WeasyPrint on [Linux](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#linux).
+- **macOS**: Install WeasyPrint using Homebrew with the command: `brew install weasyprint`.
+
 To set up the backend of the project, follow these steps:
 
 1. Add your AWS credentials in a `.env` file.
