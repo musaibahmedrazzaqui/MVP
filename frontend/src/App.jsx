@@ -9,6 +9,7 @@ function App() {
       <div className="file-upload-container">
         <FileUpload uploadType="receipts" />
         <FileUpload uploadType="invoices" />
+       
       </div>
       <h2 style={{ fontSize: 30 }}>
         Reload the page to use the service again!

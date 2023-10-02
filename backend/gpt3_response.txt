@@ -1,88 +1,18 @@
-Vendor Name: BIRMINGHAM BEV 
-Client Number: 1-205-942-9
-Invoice Number: 1777695
-Product Name: Blue Moon Belgian
-UPC: 05914
-QTY: 4/6/12
-Price per Case: 33.50
-Product Name: Coors Light 
-UPC: 00201
-QTY: 2/12/12
-Price per Case: 67.80
-Product Name: Coors Light
-UPC: 00216
-QTY: 4/6/12
-Price per Case: 28.30
-Product Name: Coors Light
-UPC: 00222
-QTY: 6/4/16
-Price per Case: 53.80
-Product Name: Coors Banquet
-UPC: 00122
-QTY: 4/6/16
-Price per Case: 26.90
-Product Name: Abita Purple Haze
-UPC: 05046
-QTY: 4/6/12 
-Price per Case: 33.50
-Product Name: Abita Andygator
-UPC: 04987
-QTY: 4/6/12 
-Price per Case: 35.00
-Product Name: Avondale Spring Street Saison
-UPC: 23336
-QTY: 4/6/12
-Price per Case: 28.20
-Product Name: Corona
-UPC: 06405
-QTY: 1/18/12
-Price per Case: 91.60
-Product Name: Corona Light
-UPC: 06434
-QTY: 4/6/12
-Price per Case: 34.30
-Product Name: Corona Familiar
-UPC: 040218
-QTY: 12/24
-Price per Case: 29.35
-Product Name: Modelo Especial
-UPC: 06454
-QTY: 4/6/12
-Price per Case: 34.20
-Product Name: Modelo Especial
-UPC: 06464
-QTY: 12/24
-Price per Case: 29.35
-Product Name: Modelo Especial Chelada
-UPC: 06468
-QTY: 12/24
-Price per Case: 58.70
-Product Name: Negra Modelo
-UPC: 06453
-QTY: 4/6/12
-Price per Case: 68.60
-Product Name: Carta Blanca
-UPC: 06614
-QTY: 4/6/12
-Price per Case: 33.50
-Product Name: Good People Range Life
-UPC: 35305 
-QTY: 4/6/12
-Price per Case: 82.00
-Product Name: Blue Moon Light Sky 
-UPC: 40219
-QTY: 4/6/12
-Price per Case: 33.50
-Product Name: Modelo Chelada Mango & Chile
-UPC: 40226
-QTY: 12/24
-Price per Case: 29.35
-Product Name: Handling/Fuel Handling 
-UPC: 00002 
-QTY: 1/12 
-Price per Case: 5.00
-Product Name: Uptime Original SF
-UPC: 15117
-QTY: 1/12
-Price per Case: 10.00
-Total Value: 970.75
+Vendor Name: Alabama Crown Distributing Co. 
+Client Number: 010027958
+Invoice Number: B1322
+
+Product Name | UPC | QTY | Price per Case
+Sooml Bota Minis Chardonnay | 82242013314 | 12 | 40.80
+Sooml Bota.Minis Pinot Grigio | 83820104011 | 12 | 40.80
+Business Draet | 728900001184 | 12 | 31.96
+Heineken LGR | 72890006684 | 12 | 33.56
+Heineken Silver | 789000249 | 12 | 33.56
+Bolyte Berry Hydration | 867693000249 | 12 | 29.60
+Bolyte Citrus | 8676930002012 | 12 | 28.20
+Bolyte Melon | 867693000287 | 12 | 29.60
+Bolyte Tropical Hydration | 867693000263 | 12 | 28.20
+Buzzballz | 1100497278 | 24 | 57.35
+ Hillers Buzzballz | 1100497228 | 24 | 57.36 
+
+Total Value: 436.00

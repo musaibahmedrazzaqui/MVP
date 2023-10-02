@@ -1,70 +1,56 @@
 Key,Value
-SOLD TO(ADDRESS),"LLC
-FUEL SOUTH
-ACTON RD
-2423
-AL 35243
-VESTAVIA"
-(STREET),"ACTON RD
-2423"
-(CITY),VESTAVIA
+(ADDRESS),"2261 7Th St So
+CLANTON. AL 35045
+Bo"
+(STREET),2261 7Th St So
+(CITY),CLANTON.
 (STATE),AL
-(ZIP_CODE),35243
-(NAME),"LLC
-SOUTH"
-(ADDRESS_BLOCK),"ACTON RD
-2423
-AL 35243
-VESTAVIA"
-(ADDRESS),"ALABAMA CROWN DISTRIBUTING CO.
-1330 Corporate Woods Dr
-Alabaster AL 35007"
-(STREET),1330 Corporate Woods Dr
-(CITY),Alabaster
-(STATE),AL
-(ZIP_CODE),35007
-(NAME),ALABAMA CROWN DISTRIBUTING CO.
-(ADDRESS_BLOCK),"1330 Corporate Woods Dr
-Alabaster AL 35007"
-DATE(INVOICE_RECEIPT_DATE),02
-CUSTOMER INVOICE 1(INVOICE_RECEIPT_ID),1
-INVOICE NO(INVOICE_RECEIPT_ID),P669275
-CUSTOMER PURCHASE ORDER NO.(PO_NUMBER),800-548-1869
-SOLD TO(RECEIVER_ADDRESS),"LLC
-FUEL SOUTH
-ACTON RD
-2423
-AL 35243
-VESTAVIA"
-(RECEIVER_NAME),"LLC
-SOUTH"
-(RECEIVER_PHONE),205-326-7352
-"TAX
-SALES(TAX)",
-TOTAL(TOTAL),436.40
-(VENDOR_ADDRESS),"ALABAMA CROWN DISTRIBUTING CO.
-1330 Corporate Woods Dr
-Alabaster AL 35007"
-(VENDOR_NAME),ALABAMA CROWN DISTRIBUTING CO.
-City:(OTHER),"Hills
-VEST Vestavia"
-County:(OTHER),CJEF2 Jefferson County
-LIC:(OTHER),010027958
-CUSTOMER ACCT(OTHER),"31037663 31322
-000 501"
-ROUTE(OTHER),"31322
-501"
-YEAR(OTHER),23
-LIQUOR(OTHER),2103
-BEER(OTHER),B103
-MISC(OTHER),3103
-DELIVERY INSTRUCTIONS:(OTHER),Check Money
+(ZIP_CODE),35045
+(COUNTRY),Bo
+(ADDRESS_BLOCK),"2261 7Th St So
+CLANTON. AL 35045
+Bo"
+(NAME),LLC
+"Deposits
+Total(DISCOUNT)",$0.00
+"Discounts
+Total(DISCOUNT)",$126.05
+Invoice(INVOICE_RECEIPT_ID),856722
+Term(PAYMENT_TERMS),COD
+Total(TOTAL),"$3,314.63"
+(VENDOR_ADDRESS),"2261 7Th St So
+CLANTON. AL 35045
+Bo"
+(VENDOR_NAME),LLC
+License(OTHER),#011616111
+Tax Auth(OTHER),Clanton
+Check #(OTHER),8042
+"Credits
+(+) Total(OTHER)",$0.00
 
-"[""BOTA MINT'S CHARDONNAY""]",['40.80'],['54.48'],['00420065']
-"[""BOTA MINI'S PINOT GRIGIO""]",['40.80'],['54.48'],['00420185']
-['083820104011'],['GUINNESS DRAFT 4/6/11.2 (72990'],['31.96'],['31.96'],['do758075']
-['HEINEKEN SILVER LAGER 4/6/12'],['33.56'],['33.56'],['00758638']
-['BIOLYTE BERRY HYDRATION 12/160'],['28.20'],['29.60'],['00899971']
-['00899973'],['BIOLYTE MELON HYDRATION 12/160'],['28.20'],['29.60'],['867693000287']
-['BIOLYTE PUNCH HYDRATION 12/160'],['28.20'],['29.60'],['00899978']
+['53246'],['Bud Lt- 2/12/12 Cn'],['$3.20'],['$22.60'],['$45.20'],['2'],['53106'],[''],[''],[''],['']
+['560'],['Bud Lt- 4/6/12 Ln'],[''],['$29.36\n$30.40'],['$88.08'],['3'],['Monster Beast Variety 2/ 1'],['1'],['$30.40'],[''],['']
+['15315'],['Monster Beast Variety 2/ 1'],[''],['$30.40'],['$30.40'],['1'],['Nat Lt- 2/15/12 Cn'],['20'],[''],[''],['']
+['53168'],['Bud Lt- 2/12/12 Ln'],[''],['$22.60'],['$90.40'],['4'],[''],[''],[''],[''],['']
+['86168'],['Busch Lt- 24/12 Cn'],['6'],['$18.85'],['$43.30'],['$113.10'],[''],[''],[''],[''],['']
+['96769'],['Mic Ult- 2/12/12 Ln'],[''],['$27.55'],['$82.65'],['3'],[''],[''],[''],[''],['']
+['96770'],['Mic Ult- 4/6/12 Ln'],[''],['$32.15'],['$128.60'],['4'],[''],[''],[''],[''],['']
+['96731'],['Mic Ult- 2/12/12 Sleek C'],[''],['$27.55'],['$247.95'],['9'],[''],[''],[''],[''],['']
+['15044'],['Nat Lt- 6/4/16 Cn'],[''],['$22.00'],['$110.00'],['5'],[''],[''],[''],[''],['']
+['11246'],['Bud- 2/12/12 Cn'],[''],['$22.60'],['$67.80'],['3'],[''],[''],[''],[''],['']
+['11044'],['Bud- 6/4/16 Cn'],['14'],['$26.35'],['$368.90'],['$1.70'],[''],[''],[''],[''],['']
+['53044'],['Bud Lt- 6/4/16 Cn'],['8'],['$26.35'],['$210.80'],['0-18200-00538-1'],[''],[''],[''],[''],['']
+['86246'],['0-18200-00801-6'],['5'],['$18.65\n$31.20'],['$93.25'],['$1.95'],['0-18200-00524-4'],[''],[''],[''],['']
+['86246'],['Mic Ult- 6/4/16 Cn'],[''],['$31.20'],['$93.60'],['3'],['0-18200-00524-4'],['96432'],[''],[''],['']
+['Pallet-582384'],['Bud Ice- 6/4/16 Cn'],[''],['$21.40'],['$385.20'],['18'],['0-18200-00375-2'],['37044'],['0-18200-25001-9'],[''],['']
+['37044'],['15/25 Cn\nBud Lt-'],[''],['$29.05'],['$29.05'],['I'],['0-18200-00375-2'],['0-18200-25001-9'],[''],[''],['']
+['53251'],[''],['$1.95'],['$32.15'],['$128.60'],['4'],[''],[''],[''],[''],['']
+['53251'],['0-18200-61047-9'],['$1.95'],['$18.65'],['$149.20'],['Bud Lt Plat- 4/6/12 Ln'],['8'],['0-18200-25001-9'],['18993'],['0-18200-18993-7'],['61246']
+['Pallet-582385'],['1'],['$2.00\n$2.00'],['$20.50'],['$20.50'],['22249'],['8-10028-29598-8'],[''],[''],[''],['']
+['Pallet-582385'],['1/\nGhost Blue Raspberry-'],[''],['$20.50'],['$20.50'],['22249'],['8-10028-29598-8'],['8-10028-29330-4'],[''],[''],['']
+['22253'],['Bud- 15/25 Cn'],[''],['$29.05'],['$44.00'],['I'],['8-10028-29330-4'],['0-18200-25000-2'],[''],[''],['']
+['11251'],['Busch Lt- 6/4/16 Cn'],[''],['$32.10'],['$64.20'],['2'],['86044'],['0-18200-00543-5'],[''],[''],['']
+['86044'],['Mic Ult- 15/25 Cn'],[''],['$35.80'],['$35.80'],['I'],['96711'],['0-18200-25010-1'],['8-10117-13001-5'],[''],['']
+['96711'],['Green\nMonster Beast Mean\nPerf'],[''],['$35.80'],['$35.80'],['I'],['567'],['8-10117-13001-5'],['8-10117-13007-7'],[''],['']
+['567'],['Beast Peach\nMonster\nWhite Haze'],[''],['$35.80'],['$25.65'],['I'],['8-10117-13007-7'],['568'],['8-10117-13004-6'],[''],['']
 

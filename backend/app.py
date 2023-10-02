@@ -4,6 +4,8 @@ import tempfile
 import csv
 import base64
 import pytesseract
+from doctr.io import DocumentFile
+from doctr.models import ocr_predictor
 import boto3
 from PIL import Image
 from flask import Flask, request, jsonify, send_file, Response
@@ -25,7 +27,7 @@ load_dotenv()
 aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
 aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
 aws_region = os.getenv("AWS_REGION")
-
+model = ocr_predictor(pretrained=True)
 # Initialize AWS Textract client with credentials
 textract = boto3.client("textract", aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key,region_name=aws_region)
 
@@ -40,12 +42,66 @@ def perform_ocr(image_path):
         print("OCR Error:", str(e))
         return None
 
-# Define a function to generate text using OpenAI's GPT-3
+def read_text_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            ocr_results = file.read()
+            return ocr_results
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+def using_doctr(image_path):
+    doc = DocumentFile.from_images(image_path)
+    result = model(doc)
+    json_output = result.export()
+    json_file_path = "feed.json"
+    with open(json_file_path, 'w') as json_file:
+        json.dump(json_output, json_file, indent=4)
+
+    print(f"JSON data has been saved to {json_file_path}")
+        # Read the JSON data from test.json
+    with open('feed.json', 'r') as json_file:
+        json_data = json.load(json_file)
+
+    # Open a text file for writing
+    with open('results.txt', 'w') as txt_file:
+    # Initialize a dictionary to store words grouped by y coordinates
+        words_by_y = {}
+
+    # Iterate through pages
+        for page in json_data['pages']:
+        # Iterate through blocks in each page
+            for block in page['blocks']:
+            # Iterate through lines in each block
+                for line in block['lines']:
+                # Sort words by their y0 coordinate
+                    words_in_line = sorted(line['words'], key=lambda w: w['geometry'][0][1])
+
+                # Initialize a list to store words with the same y coordinates
+                    words_with_equal_y = []
+
+                # Iterate through words in the line
+                    for word in words_in_line:
+                        y_coord = round(word['geometry'][0][1], 2)  # Round y coordinate to 1 decimal place
+                        if y_coord not in words_by_y:
+                            words_by_y[y_coord] = []
+                        words_by_y[y_coord].append(word)
+
+    # Sort the words by y coordinate and write them to the text file with y coordinates
+        sorted_y_coords = sorted(words_by_y.keys())
+        for y_coord in sorted_y_coords:
+            words_with_equal_y = words_by_y[y_coord]
+            line_text = ' '.join(f'{w["value"]}' for w in words_with_equal_y)
+            txt_file.write(line_text + '\n\n')
+# Define a function to generate text using ChatGPT
 def generate_text(ocr_text):
     try:
         # Create the initial prompt with the OCR text
         initial_prompt = f"""
-Extract the following information from the table:
+Extract the following information from the OCR Text I'll give you:
 - Invoice Number (Inv Number)
 - Vendor Name
 - Client Number
@@ -54,22 +110,23 @@ Then for each product,
 - Product Name
 - UPC (Universal Product Code)
 - Quantity (QTY)
-- Price per Case
+- Price per Case(this can also be named amount!)
 
 OCR Text:
 {ocr_text}
 
-Please provide the extracted data as accurately as possible. Provide Vendor Name & Client Number from the top. Then Invoice Number, then each product's name and UPC, then
-along with its price. Remember numbers in the format 02/223/22 are bogus and mean nothing.
-Finally provide Total at the end of your response. 
+Please provide the extracted data as accurately as possible. List all key value pairs even if I havent listed theme explicitly above. Provide Vendor Name & Client Number from the top. Then Invoice Number, then each product's name and UPC, then
+along with its price. Remember numbers in the format 02/223/22 are bogus and mean nothing. Please list each product's details in a single line as a table format.
+Finally provide Total at the end of your response. Remember! These are invoices, not receipts.
 """
 
         # Send the initial prompt to ChatGPT
         response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=initial_prompt,
-            max_tokens=700  # Adjust the max tokens as needed for longer responses
-        )
+             engine="text-davinci-003",
+             prompt=initial_prompt,
+             max_tokens=2048   #Adjust the max tokens as needed for longer responses
+         )
+       
 
         chat_gpt_response = response.choices[0].text.strip()
         return chat_gpt_response
@@ -92,8 +149,8 @@ def save_uploaded_image_to_temp_file(image_file):
   image_file.save(temp_image_path)
   return temp_image_path
 
-@app.route('/upload/receipts', methods=['POST'])
-def upload_receipts():
+@app.route('/upload/invoices', methods=['POST'])
+def upload_invoices():
     try:
         # Check if the 'file' field is present in the POST request
         if 'file' not in request.files:
@@ -110,9 +167,13 @@ def upload_receipts():
         image_file.save(temp_image_path)
 
         # Perform OCR on the uploaded image using Tesseract
-        ocr_text = perform_ocr(temp_image_path)
-
-        # Generate text using GPT-3 based on the OCR result
+        #ocr_text = perform_ocr(temp_image_path)
+        using_doctr(temp_image_path)
+        file_path='results.txt'
+        ocr_text=read_text_file(file_path)
+        with open('ocr_text.txt', 'w') as file:
+                file.write(ocr_text)
+        # Generate text using GPT-4 based on the OCR result
         gpt3_response = generate_text(ocr_text)
 
         # Remove the temporary image file
@@ -134,8 +195,8 @@ def upload_receipts():
         print("Error:", str(e))
         return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/upload/invoices', methods=['POST'])
-def upload_invoices():
+@app.route('/upload/receipts', methods=['POST'])
+def upload_receipts():
     try:
         # Check if the 'file' field is present in the POST request
         if 'file' not in request.files:

@@ -3,6 +3,8 @@ import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import uploadReceiptIcon from "./upload-receipt.png";
 import uploadInvoiceIcon from "./upload-invoices.png";
+//import uploadInvoiceIcon from "./upload-invoices.png";
+import SampleImageComponent from "./ModalComponent";
 
 const FileUpload = ({ uploadType }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -73,11 +75,14 @@ const FileUpload = ({ uploadType }) => {
                 className="upload-icon"
               />
             ) : (
+              <>
+               <SampleImageComponent/>
               <img
                 src={uploadInvoiceIcon}
                 alt="Upload Invoice"
                 className="upload-icon"
               />
+              </>
             )}
             <p>
               Drag & drop a {uploadType} file here, or click to select a file
