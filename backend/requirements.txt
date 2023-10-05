@@ -38,4 +38,5 @@ yarl==1.9.2
 python-doctr  
 python-doctr[tf]  
 python-doctr[torch]  
+weasyprint
 pycairo 
