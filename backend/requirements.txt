@@ -1,12 +1,9 @@
 python-doctr
-python-doctr[tf]
 python-doctr[torch]
 pycairo
 boto3
 amazon-textract-prettyprinter
-pytesseract
 openai
-Pillow
 flask
 flask_cors
 python-dotenv
