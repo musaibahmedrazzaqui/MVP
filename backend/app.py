@@ -3,11 +3,9 @@ import json
 import tempfile
 import csv
 import base64
-import pytesseract
 from doctr.io import DocumentFile
 from doctr.models import ocr_predictor
 import boto3
-from PIL import Image
 from flask import Flask, request, jsonify, send_file, Response
 from flask_cors import CORS
 import openai
@@ -32,15 +30,6 @@ model = ocr_predictor(pretrained=True)
 textract = boto3.client("textract", aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key,region_name=aws_region)
 
 # Define a function to perform OCR using Tesseract
-def perform_ocr(image_path):
-    try:
-        # Perform OCR using Tesseract on the provided image
-        ocr_result = pytesseract.image_to_string(Image.open(image_path), lang="eng")
-
-        return ocr_result
-    except Exception as e:
-        print("OCR Error:", str(e))
-        return None
 
 def read_text_file(file_path):
     try:
@@ -194,6 +183,9 @@ def upload_invoices():
     except Exception as e:
         print("Error:", str(e))
         return jsonify({'error': 'Internal server error'}), 500
+@app.route('/',methods=['GET'])
+def intialize():
+    return jsonify({'MSG':'server started'})
 
 @app.route('/upload/receipts', methods=['POST'])
 def upload_receipts():
