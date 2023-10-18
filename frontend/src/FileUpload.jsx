@@ -53,7 +53,7 @@ const FileUpload = ({ uploadType }) => {
   };
 
   const downloadFileName = uploadedFile
-    ? `result-file.${getFileExtension(uploadType)}`
+    ? `${uploadedFile.name}.${getFileExtension(uploadType)}`
     : "";
 
   return (
