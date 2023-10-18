@@ -4,6 +4,10 @@
 
 Here's a step by step tutorial to get this project running on your local machine
 
+Here's a sample of the ideal image size for us to perform good OCR.
+![Frontend](demo/IMG_5983.JPG)
+
+
 ## Frontend Setup
 
 To set up the frontend of the project, follow these steps:
