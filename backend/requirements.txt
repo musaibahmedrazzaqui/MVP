@@ -7,3 +7,6 @@ openai
 flask
 flask_cors
 python-dotenv
+pillow
+opencv-python
+imutils
