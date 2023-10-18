@@ -4,6 +4,9 @@ import tempfile
 import csv
 import base64
 from doctr.io import DocumentFile
+from PIL import Image
+import cv2
+import numpy as np
 from doctr.models import ocr_predictor
 import boto3
 from flask import Flask, request, jsonify, send_file, Response
@@ -30,6 +33,31 @@ model = ocr_predictor(pretrained=True)
 textract = boto3.client("textract", aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key,region_name=aws_region)
 
 # Define a function to perform OCR using Tesseract
+
+def preprocess_image(image_path):
+    # Load the image
+    img = cv2.imread(image_path)
+
+    # Perform preprocessing steps such as resizing, noise reduction, or other enhancements
+    # Example preprocessing steps:
+    # Resize the image
+    img = cv2.resize(img, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+
+    # Convert the image to grayscale
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    clahe = cv2.createCLAHE(clipLimit=7.0, tileGridSize=(50, 50))
+    cl_img = clahe.apply(gray)  # 'gray' is the grayscale image
+
+    # Applying thresholding on the CLAHE enhanced image
+    _, threshold = cv2.threshold(cl_img, 120, 255, cv2.THRESH_BINARY)
+    # Apply thresholding or other image enhancement techniques as needed
+    #_, threshold = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
+
+    # Save the preprocessed image to a temporary file
+    temp_preprocessed_image_path = tempfile.NamedTemporaryFile(suffix='.png', delete=False).name
+    cv2.imwrite(temp_preprocessed_image_path, threshold)
+
+    return temp_preprocessed_image_path
 
 def read_text_file(file_path):
     try:
@@ -90,7 +118,8 @@ def generate_text(ocr_text):
     try:
         # Create the initial prompt with the OCR text
         initial_prompt = f"""
-Extract the following information from the OCR Text I'll give you:
+Act like an Expert Data Analyst. Your job is to analyze data from raw text of invoices and provide key value pairs.
+Extract the following information from the raw Text provided:
 - Invoice Number (Inv Number)
 - Vendor Name
 - Client Number
@@ -101,12 +130,11 @@ Then for each product,
 - Quantity (QTY)
 - Price per Case(this can also be named amount!)
 
-OCR Text:
+Raw Text - line by line:
 {ocr_text}
 
-Please provide the extracted data as accurately as possible. List all key value pairs even if I havent listed theme explicitly above. Provide Vendor Name & Client Number from the top. Then Invoice Number, then each product's name and UPC, then
-along with its price. Remember numbers in the format 02/223/22 are bogus and mean nothing. Please list each product's details in a single line as a table format.
-Finally provide Total at the end of your response. Remember! These are invoices, not receipts.
+After analysing the raw text, Please provide the key value pairs as accurately as possible. 
+Please format your response with respect to it's conversion to CSVs. 
 """
 
         # Send the initial prompt to ChatGPT
@@ -154,10 +182,11 @@ def upload_invoices():
         # Save the uploaded image to a temporary file
         temp_image_path = "temp_image.png"
         image_file.save(temp_image_path)
-
+        temp_preprocessed_image_path = preprocess_image(temp_image_path)
         # Perform OCR on the uploaded image using Tesseract
         #ocr_text = perform_ocr(temp_image_path)
-        using_doctr(temp_image_path)
+        print(temp_preprocessed_image_path)
+        using_doctr(temp_preprocessed_image_path)
         file_path='results.txt'
         ocr_text=read_text_file(file_path)
         with open('ocr_text.txt', 'w') as file:
@@ -204,16 +233,17 @@ def upload_receipts():
         #temp_image_path = "temp_image.png"
         #image_file.save(temp_image_path)
         temp_image_path = save_uploaded_image_to_temp_file(image_file)
-        
+        temp_preprocessed_image_path = preprocess_image(temp_image_path)
+        print(temp_preprocessed_image_path)
         # Use AWS Textract to analyze the image and extract tables
         response = textract.analyze_expense(
             Document={
-                'Bytes': open(temp_image_path, 'rb').read()
+                'Bytes': open(temp_preprocessed_image_path, 'rb').read()
             }
         )
         json_file_path = "textract_response.json"
 
-# Write the Textract response to the JSON file
+        # Write the Textract response to the JSON file
         with open(json_file_path, 'w') as json_file:
             json.dump(response, json_file, indent=4)
         
