@@ -4,7 +4,7 @@
 
 Here's a step by step tutorial to get this project running on your local machine
 
-Here's a sample of the ideal image size for us to perform good OCR.
+Here's a sample of the ideal image size for us to perform good OCR. Notice how this doesn't have any shadows or deskewing
 ![Frontend](demo/IMG_5983.JPG)
 
 
